@@ -1,3 +1,5 @@
+import os
+
 os.listdir(dirname)：列出dirname下的目录和文件
 
 os.getcwd()：获得当前工作目录
