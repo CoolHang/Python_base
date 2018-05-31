@@ -5,4 +5,4 @@ python基础知识汇录.主要为查找方便做的分类汇总
 2、python的sys模块的基本使用
 3、python的字符串的使用
 4、python的深拷贝和浅拷贝
-5、
+5、python的伪私有化
