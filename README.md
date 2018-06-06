@@ -6,3 +6,4 @@ python基础知识汇录.主要为查找方便做的分类汇总<br>
 3、python的字符串的使用<br>
 4、python的深拷贝和浅拷贝<br>
 5、python的伪私有化<br>
+6、python套接字基本使用<br>
