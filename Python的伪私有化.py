@@ -27,7 +27,6 @@ if __name__ == '__main__':
     a = A()
     a.__func()
 
-复制代码
 
 运行后出现异常，提示A没有属性__func，从而实现类似私有属性的功能。
 
@@ -36,7 +35,6 @@ AttributeError: 'A' object has no attribute '__func'
 之所以说它是“伪私有”，是因为在了解伪私有变量的变量名压缩规则后，可以根据压缩规则进行调用。
 
 再次修改代码进行验证：
-复制代码
 
 class A(object):
     def __func(self):print('Hello Python')
@@ -44,8 +42,6 @@ class A(object):
 if __name__ == '__main__':
     a = A()
     a._A__func()
-
-复制代码
 
 运行结果正常， 成功打印“Hello Python”字符串。
 
@@ -58,7 +54,6 @@ Hello Python
 使用伪私有属性是为了避免在类树中，多个类赋值相同的属性引发冲突问题。
 
 假设有两个类，C1 和 C2，他们都有相同的属性X。
-复制代码
 
 class C1():
     def meth1(self):
@@ -70,9 +65,6 @@ c1 = C1()
 c1.meth1()
 c1.meth2()
 
-复制代码
-复制代码
-
 class C2():
     def meth3(self):
         self.x = 'Hello Python'
@@ -83,12 +75,9 @@ c2 = C2()
 c2.meth3()
 c2.meth4()
 
-复制代码
-
 类C1和C2在单独调用时，输出结果没有问题，符合预期：调用meth2方法时，打印meth1的赋值结果；调用meth4方法时，打印meth3的赋值结果。
 
 此时增加一个新的类C3，继承自C1、C2（多重继承）：
-复制代码
 
 class C1():
     def meth1(self):
@@ -111,8 +100,6 @@ c3.meth3()
 c3.meth2()
 c3.meth4()
 
-复制代码
-
 从运行结果可以看出，每次 print(self.x)的内容，取决于 self.x 最后一次赋值的内容。
 
 Hello Python
@@ -123,7 +110,6 @@ Hello Python
 后续再调用c3.meth2()打印self.x的值时，实际上打印的是最后一次赋值结果，这在有些情况下跟类的设计初衷是相违背的：在C1中，meth2希望打印的是在meth1中赋值的内容：“Hello World”。
 
 在使用伪私有属性后可以解决变量名self.x相互覆盖的问题（因为self.__x 被压缩成了 self._C1__x 和 self._C2__x，变量名不同，不会互相覆盖）：
-复制代码
 
 class C1():
     def meth1(self):
@@ -146,7 +132,6 @@ c3.meth3()
 c3.meth2()
 c3.meth4()
 
-复制代码
 
 运行结果符合C1的设计初衷:调用meth2时应该打印出meth1的赋值结果：
 
