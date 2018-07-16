@@ -1,0 +1,9 @@
+直接执行这两个命令即可：
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
+ 
+
+如果要切换到Python2，执行：
+
+sudo update-alternatives --config python
