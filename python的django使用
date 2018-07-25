@@ -132,7 +132,7 @@
 
     h=b.heroinfo_set.create(htitle=u'黄蓉',hgender=False,hcontent=u'打狗棍法')
 
-六、服务器
+七、服务器
 
     运行如下命令可以开启服务器
 
